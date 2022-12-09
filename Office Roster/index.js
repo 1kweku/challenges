@@ -121,12 +121,13 @@ async function newMember() {
       choices: ["Yes", "No"],
     },
   ]);
-  if (newMember.addMember === "Yes") {
+  if (addMember.team === "Yes") {
     return questions();
   }
   createRoster();
 }
-questions();
+//questions();
+newMember();
 
 function createRoster() {
   fs.writeFile("index.html", officeRoster, (err) =>
