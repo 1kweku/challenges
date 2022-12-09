@@ -27,9 +27,14 @@ const questions = async () => {
       name: "position",
       choices: ["Employee", "Engineer", "Manager", "Intern"],
     },
-  ])};
+    //trySwitch()
+  ]);
 
-  async function trySwitch(response.name) {
+  //const ifEngineer;
+  //const ifManager;
+  //const ifIntern;
+
+  /* async function trySwitch(response.position) {
     switch(response.name) {
     case 'Engineer': const ifEngineer = await inquirer.prompt [
       {
@@ -37,81 +42,97 @@ const questions = async () => {
         question: "What is your GitHUb?",
         name: "GitHub",
       }
-    ]};
-  }
+    ]
+    break;
+    case 'Manager': const ifManager = await inquirer.prompt [
+      {
+        type: 'input',
+        question: 'What is your office number',
+        name: 'Office number'
+      }
+    ]
+  break;
+case 'Intern': const ifIntern = await inquirer.prompt [{
+  type: 'input',
+  question: 'What school did you go to',
+  name: 'School'
 
-  
- /* if (response.name === "Manager") {
-    const ifManager = await inquirer.prompt[
+}]};
+  }};*/
+
+  if (response.position === "Manager") {
+    const ifManager = await inquirer.prompt([
       {
         type: "input",
         question: "What is your office number?",
         name: "officeNumber",
-      }
-    ];
-  }
+      },
+    ]);
 
-  const addManager = new Manager(
-    response.name,
-    response.id,
-    response.email,
-    ifManager.name
-  );
-  officeRoster.push(addManager);
-
-  if (response.position === "Engineer") {
-    const ifEngineer = await inquirer.prompt[
+    const addManager = new Manager(
+      response.name,
+      response.id,
+      response.email,
+      ifManager.officeNumber
+    );
+    officeRoster.push(addManager);
+  } else if (response.position === "Engineer") {
+    const ifEngineer = await inquirer.prompt([
       {
         type: "input",
         question: "What is your GitHUb?",
         name: "GitHub",
-      }
-    ];
-  }
-  const addEngineer = new Engineer(
-    response.name,
-    response.id,
-    response.email,
-    ifEngineer.name
-  );
-  officeRoster.push(addEngineer);
+      },
+    ]);
 
-  if (response.position === "Intern") {
-    const ifIntern = await inquirer.prompt[
+    const addEngineer = new Engineer(
+      response.name,
+      response.id,
+      response.email,
+      ifEngineer.GitHub
+    );
+    officeRoster.push(addEngineer);
+  } else if (response.position === "Intern") {
+    const ifIntern = await inquirer.prompt([
       {
         type: "input",
         question: "What University did you attend?",
         name: "School",
-      }
-    ];
+      },
+    ]);
+
+    const addIntern = new Intern(
+      response.name,
+      response.id,
+      response.email,
+      ifIntern.School
+    );
+    officeRoster.push(addIntern);
   }
-  const addIntern = new Intern(
-    response.name,
-    response.id,
-    response.email,
-    ifIntern.school
-  );
-  officeRoster.push(addIntern);
 };
 
 async function newMember() {
   await questions();
-  const addMember = await inquirer.prompt({
-    type: "list",
-    question: "Add another position to your team?",
-    name: "team",
-    choices: ["Yes", "No"],
-  });
+  const addMember = await inquirer.prompt([
+    {
+      type: "list",
+      question: "Add another position to your team?",
+      name: "team",
+      choices: ["Yes", "No"],
+    },
+  ]);
   if (newMember.addMember === "Yes") {
     return questions();
   }
   createRoster();
 }
+questions();
 
 function createRoster() {
   fs.writeFile("index.html", officeRoster, (err) =>
     err ? console.error(err) : console.log("HTML generated!")
   );
-}*/
+}
 
-questions();
+//questions().then(newMember);
+console.log(officeRoster);
