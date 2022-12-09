@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateRoster = require("./src/roster");
 
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
@@ -130,7 +131,7 @@ async function newMember() {
 newMember();
 
 function createRoster() {
-  fs.writeFile("index.html", officeRoster, (err) =>
+  fs.writeFile("index.html", generateRoster(officeRoster), (err) =>
     err ? console.error(err) : console.log("HTML generated!")
   );
 }
