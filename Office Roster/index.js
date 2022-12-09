@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateRoster = require("./src/roster");
+const generateRoster = require("./src/templateHelper.js");
 
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
@@ -123,7 +123,7 @@ async function newMember() {
     },
   ]);
   if (addMember.team === "Yes") {
-    return questions();
+    return newMember();
   }
   createRoster();
 }
@@ -131,7 +131,7 @@ async function newMember() {
 newMember();
 
 function createRoster() {
-  fs.writeFile("index.html", generateRoster(officeRoster), (err) =>
+  fs.writeFile("./dist/index.html", generateRoster(officeRoster), (err) =>
     err ? console.error(err) : console.log("HTML generated!")
   );
 }
