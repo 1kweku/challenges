@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateRoster = require("./src/templateHelper.js");
+const templateHelper = require("./src/templateHelper.js").default;
 
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
@@ -14,30 +14,30 @@ const questions = async () => {
     /* Pass your questions in here */
     {
       type: "input",
-      question: "What is your name?",
+      message: "What is your name?",
       name: "name",
     },
 
-    { type: "input", question: "What is your ID?", name: "ID" },
+    { type: "input", message: "What is your ID?", name: "ID" },
 
-    { type: "input", question: "What is your email?", name: "email" },
+    { type: "input", message: "What is your email?", name: "email" },
 
     {
       type: "list",
-      question: "What is your position?",
-      name: "position",
+      message: "What is your role?",
+      name: "role",
       choices: ["Employee", "Engineer", "Manager", "Intern"],
     },
     //trySwitch()
   ]);
 
-  //const ifEngineer;
-  //const ifManager;
+  //const engineerGithub;
+  //const managerOfficeNumber;
   //const ifIntern;
 
-  /* async function trySwitch(response.position) {
+  /* async function trySwitch(response.role) {
     switch(response.name) {
-    case 'Engineer': const ifEngineer = await inquirer.prompt [
+    case 'Engineer': const engineerGithub = await inquirer.prompt [
       {
         type: "input",
         question: "What is your GitHUb?",
@@ -45,7 +45,7 @@ const questions = async () => {
       }
     ]
     break;
-    case 'Manager': const ifManager = await inquirer.prompt [
+    case 'Manager': const managerOfficeNumber = await inquirer.prompt [
       {
         type: 'input',
         question: 'What is your office number',
@@ -61,8 +61,8 @@ case 'Intern': const ifIntern = await inquirer.prompt [{
 }]};
   }};*/
 
-  if (response.position === "Manager") {
-    const ifManager = await inquirer.prompt([
+  if (response.role === "Manager") {
+    const managerOfficeNumber = await inquirer.prompt([
       {
         type: "input",
         question: "What is your office number?",
@@ -74,11 +74,12 @@ case 'Intern': const ifIntern = await inquirer.prompt [{
       response.name,
       response.id,
       response.email,
-      ifManager.officeNumber
+      managerOfficeNumber.officeNumber
     );
     officeRoster.push(addManager);
-  } else if (response.position === "Engineer") {
-    const ifEngineer = await inquirer.prompt([
+    console.log("Added manager");
+  } else if (response.role === "Engineer") {
+    const engineerGithub = await inquirer.prompt([
       {
         type: "input",
         question: "What is your GitHUb?",
@@ -90,11 +91,12 @@ case 'Intern': const ifIntern = await inquirer.prompt [{
       response.name,
       response.id,
       response.email,
-      ifEngineer.GitHub
+      engineerGithub.GitHub
     );
     officeRoster.push(addEngineer);
-  } else if (response.position === "Intern") {
-    const ifIntern = await inquirer.prompt([
+    console.log("Added engineer");
+  } else if (response.role === "Intern") {
+    const internSchool = await inquirer.prompt([
       {
         type: "input",
         question: "What University did you attend?",
@@ -106,18 +108,25 @@ case 'Intern': const ifIntern = await inquirer.prompt [{
       response.name,
       response.id,
       response.email,
-      ifIntern.School
+      internSchool.School
     );
     officeRoster.push(addIntern);
+    console.log("Added intern");
   }
 };
+
+function createRoster() {
+  fs.writeFile("./dist/index.html", templateHelper(officeRoster), (err) =>
+    err ? console.error(err) : console.log("HTML generated!")
+  );
+}
 
 async function newMember() {
   await questions();
   const addMember = await inquirer.prompt([
     {
       type: "list",
-      question: "Add another position to your team?",
+      question: "Add another role to your team?",
       name: "team",
       choices: ["Yes", "No"],
     },
@@ -125,16 +134,8 @@ async function newMember() {
   if (addMember.team === "Yes") {
     return newMember();
   }
+  console.log(officeRoster);
   createRoster();
 }
-//questions();
+
 newMember();
-
-function createRoster() {
-  fs.writeFile("./dist/index.html", generateRoster(officeRoster), (err) =>
-    err ? console.error(err) : console.log("HTML generated!")
-  );
-}
-
-//questions().then(newMember);
-console.log(officeRoster);
