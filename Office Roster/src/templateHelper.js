@@ -11,9 +11,9 @@ const templateHelper = (rosterData) => {
       </div>
       <div class="employee info">
         <ul class="info list">
-          <li class="one">${Manager.getID()}</li>
-          <li class="two">${Manager.getEmail()}</li>
-          <li class="three">${Manager.officeNumber()}</li>
+          <li class="id">${Manager.getID()}</li>
+          <li class="email">${Manager.getEmail()}</li>
+          <li class="officeNumber">${Manager.officeNumber()}</li>
         </ul>
       </div>
     </div> `;
@@ -28,9 +28,9 @@ const templateHelper = (rosterData) => {
       </div>
       <div class="employee info">
         <ul class="info list">
-          <li class="one">${Engineer.getID()}</li>
-          <li class="two">${Engineer.getEmail()}</li>
-          <li class="three">${Engineer.getGitHub()}</li>
+          <li class="id">${Engineer.getID()}</li>
+          <li class="email">${Engineer.getEmail()}</li>
+          <li class="GitHub">${Engineer.getGitHub()}</li>
         </ul>
       </div>
     </div> `;
@@ -45,9 +45,9 @@ const templateHelper = (rosterData) => {
       </div>
       <div class="employee info">
         <ul class="info list">
-          <li class="one">${Intern.getID()}</li>
-          <li class="two">${Intern.getEmail()}</li>
-          <li class="three">${Intern.getSchool()}</li> 
+          <li class="id">${Intern.getID()}</li>
+          <li class="email">${Intern.getEmail()}</li>
+          <li class="school">${Intern.getSchool()}</li> 
         </ul>
       </div>
     </div> `;
@@ -63,7 +63,7 @@ const templateHelper = (rosterData) => {
      </head>
      <body>`;
 
-  roster.forEach((person) => {
+  rosterData.forEach((person) => {
     if (person instanceof Engineer) {
       html += createEngineer(person);
     } else if (person instanceof Manager) {
