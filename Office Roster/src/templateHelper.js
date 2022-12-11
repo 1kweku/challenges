@@ -6,14 +6,14 @@ const templateHelper = (rosterData) => {
     return `
     <div class="employee">
       <div class="name and title">
-        <h2 class="name"> ${Manager.getName()}</h2>
-        <h3 class="role"> ${Manager.getRole()}</h3>
+        <h2 class="name"> Name: ${Manager.getName()}</h2>
+        <h3 class="role"> Role: ${Manager.getRole()}</h3>
       </div>
       <div class="employee info">
         <ul class="info list">
-          <li class="id">${Manager.getID()}</li>
-          <li class="email">${Manager.getEmail()}</li>
-          <li class="officeNumber">${Manager.officeNumber()}</li>
+          <li class="id"> ID: ${Manager.getID()}</li>
+          <li class="email"> Email: ${Manager.getEmail()}</li>
+          <li class="officeNumber"> Office Number: ${Manager.getOfficeNumber()}</li>
         </ul>
       </div>
     </div> `;
@@ -23,14 +23,14 @@ const templateHelper = (rosterData) => {
     return `
     <div class="employee">
       <div class="name and title">
-        <h2 class="name"> ${Engineer.getName()}</h2>
-        <h3 class="role"> ${Engineer.getRole()}</h3>
+        <h2 class="name">Name: ${Engineer.getName()}</h2>
+        <h3 class="role">Role: ${Engineer.getRole()}</h3>
       </div>
       <div class="employee info">
         <ul class="info list">
-          <li class="id">${Engineer.getID()}</li>
-          <li class="email">${Engineer.getEmail()}</li>
-          <li class="GitHub">${Engineer.getGitHub()}</li>
+          <li class="id">ID: ${Engineer.getID()}</li>
+          <li class="email">Email: ${Engineer.getEmail()}</li>
+          <li class="GitHub">GitHub: ${Engineer.getGitHub()}</li>
         </ul>
       </div>
     </div> `;
@@ -40,14 +40,14 @@ const templateHelper = (rosterData) => {
     return `
     <div class="employee">
       <div class="name and title">
-        <h2 class="name"> ${Intern.getName()}</h2>
-        <h3 class="role"> ${Intern.getRole()}</h3>
+        <h2 class="name">Name: ${Intern.getName()}</h2>
+        <h3 class="role">Role: ${Intern.getRole()}</h3>
       </div>
       <div class="employee info">
         <ul class="info list">
-          <li class="id">${Intern.getID()}</li>
-          <li class="email">${Intern.getEmail()}</li>
-          <li class="school">${Intern.getSchool()}</li> 
+          <li class="id">ID: ${Intern.getID()}</li>
+          <li class="email">Email: ${Intern.getEmail()}</li>
+          <li class="school">School: ${Intern.getSchool()}</li> 
         </ul>
       </div>
     </div> `;

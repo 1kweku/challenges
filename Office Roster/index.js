@@ -126,7 +126,7 @@ async function newMember() {
   const addMember = await inquirer.prompt([
     {
       type: "list",
-      question: "Add another role to your team?",
+      message: "Add another role to your team?",
       name: "team",
       choices: ["Yes", "No"],
     },
