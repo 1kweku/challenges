@@ -19,5 +19,5 @@ it("returns engineer's role", () => {
     "github.com/1kweku"
   );
 
-  expect(Kweku.getrole()).toEqual("Engineer");
+  expect(Kweku.getRole()).toEqual("Engineer");
 });
