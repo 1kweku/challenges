@@ -116,7 +116,7 @@ case 'Intern': const ifIntern = await inquirer.prompt [{
 };
 
 function createRoster() {
-  fs.writeFile("./dist/index.html", templateHelper(officeRoster), (err) =>
+  fs.writeFile("./index.html", templateHelper(officeRoster), (err) =>
     err ? console.error(err) : console.log("HTML generated!")
   );
 }
